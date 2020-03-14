@@ -312,4 +312,274 @@ export default {
 **插入路由**
 src/router/index.js路由中将主页路由/所绑定的组件从默认的HelloWorld修改为刚才写的Home组件
 ```
+import Vue from 'vue'
+import Router from 'vue-router'
+//import HelloWorld from '@/components/HelloWorld'
+import Home from '@/components/Home'
+
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
+    }
+  ]
+
+})
 ```
+
+### 使用路由进行多页面跳转
+
+- 商品展示列表 Home.vue
+- 商品详情 Detail.vue
+- 购物车  Cart.vue
+- 商品的后台管理页面 Admin.vue
+
+现在我们先来实现商品展示列表、购物车和后台管理页面的模板内容。因为商品详情页后面将会使用组件进行复用，所以这里我们暂时先不创建。
+
+#### 添加首页导航
+```
+// 修改App.vue
+<template>
+<div id="app">
+    <nav>
+        <div class="container">
+            <ul class="nav__left">
+                <li>
+                    <router-link to="/">Home</router-link>
+                </li>
+                <li>
+                    <router-link to="/admin">Admin</router-link>
+                </li>
+                <li>
+                    <router-link to="/cart">Cart</router-link>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <router-view />
+</div>
+</template>
+
+<script>
+export default {
+  name: 'App'
+}
+</script>
+<style>
+#app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+}
+</style>
+```
+#### 创建后台管理页面
+
+`src/pages/Admin.vue`
+
+```
+<template>
+  <div>
+    <div class="title">
+      <h1>{{msg}}</h1>
+    <div>
+  </div>
+</template>
+<script>
+  export default {
+      new: 'Admin',
+      data () {
+        return {
+          msg: 'welcome to your Admin.vue'
+        }
+      }
+  }
+</script>
+```
+
+#### 创建购物车页面
+
+`src/pages/Cart.vue`
+
+```
+<template>
+  <div>
+    <div class="title">
+      <h1>{{msg}}</h1>
+    <div>
+  </div>
+</template>
+<script>
+  export default {
+      new: 'Admin',
+      data () {
+        return {
+          msg: 'welcome to your Cart.vue'
+        }
+      }
+  }
+</script>
+```
+
+#### 将新页面导入路由
+
+```
+import Vue from 'vue'
+import Router from 'vue-router'
+// import HelloWorld from '@/components/HelloWorld'
+import Home from '@/components/Home'
+import Admin from '@/pages/Admin'
+import Cart from '@/pages/Cart'
+
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: Admin
+    },
+    {
+      path: '/cart',
+      name: 'Cart',
+      component: Cart
+    }
+  ]
+})
+
+```
+
+### 使用嵌套路由和动态路由合理组织页面
+
+#### 升级路由
+
+- /create 创建新的商品
+- /edit 编辑商品信息
+
+```
+import Vue from 'vue'
+import Router from 'vue-router'
+
+import Home from '@/components/Home'
+import Cart from '@/components/Cart'
+
+// Admin components
+import Index from '@/pages/admin/Index'
+import New from '@/pages/admin/New'
+import Edit from '@/pages/admin/Edit'
+import Products from '@/pages/admin/Products'
+
+Vue.use(Router)
+
+export default New Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/admin',
+      name:  'Admin',
+      component: Index,
+      children: [
+        {
+          path: 'edit/:id',
+          name: 'Edit',
+          component： Edit
+        },
+        {
+          path: 'new',
+          name: 'New',
+          component: New
+        },
+        {
+          path: '',
+          name: 'Products',
+          compone nt: Products
+        }
+      ],
+      {
+        path: '/cart',
+        name: 'Cart',
+        component: Cart
+      }
+    }
+  ]
+})
+
+```
+嵌套路由的用法是给需要归为一类的页面设置一个入口页面，然后把这一类页面都放到这个路由页面定义的`children`字段数组中。
+
+Admin类别下有四个组件
+- 入口组件 Index， /admin
+- 新建 New, /admin/new
+- Products,
+- 编辑 Edit， /admin/edit/:id  (动态路由)
+
+`edit:id` ----`动态路由`，即:id会匹配任意字符串，用户访问`/admin/edit/<any-string>`都会激活Edit路由，从而渲染
+
+
+#### 创建Admin子页面
+
+- `src/pages/admin/Index.vue`
+  ```
+  <template>
+    <div>
+      <div class="admin-new">
+        <div class="container">
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <ul>
+              <li>
+                <router-link to="/admin"></router-link>
+              </li>
+              <li>
+                <router-link to="/admin/new">New Products</router-link>
+              </li>
+            </ul>
+          </div>
+          <router-view></router-view>
+        </div>
+      </div>
+    </div>
+  </template>
+  ```
+
+  Index.vue作为嵌套路由的入口文件，在其中会有`router-link`
+  导向更深层次的路由
+
+  `router-view`用渲染子路由组件，比如访问/admin/new 页面，，那么router-view部分会被替换成New.vue内容
+
+- 创建 src/pages/admin/Edit.vue
+  ```
+  <template>
+    <div>
+      <div class="title">
+        <h1>This is Admin/Edit/{{$route.params.id}}</h1>
+      </div>
+    </div>
+  </template>
+  ```
+  用户访问/admin/edit/:id,渲染Edit.vue组件
+  通过$route.params.id方式获取到用户输入的：id部分
+  ```
+  /admin/edit/123
+
+  This is Admin/Edit/123
+  ```
+
+- 创建 src/pages/admin/New.vue
+- 创建 src/pages/admin/Products.vue
