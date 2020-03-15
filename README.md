@@ -30,6 +30,14 @@
 
  ##   Vue 和 Express 实现迷你全栈电商应用(vue-shopping)
 
+ **技术站**
+- vue
+- Express
+-  MongoDB
+
+
+## 项目目录
+
 - [第一章](第一章)
     - [项目准备](###项目准备)
         - [安装依赖](####安装依赖)
@@ -37,6 +45,7 @@
     - [脚手架代码](###脚手架代码)
         - [src/main.js](####src/main.js)
         - [初始化项目](####初始化项目) 
+- [第二章](##第二章)
 
 ## 第一章
 
@@ -464,6 +473,7 @@ export default new Router({
 
 ### 使用嵌套路由和动态路由合理组织页面
 
+
 #### 升级路由
 
 - /create 创建新的商品
@@ -583,3 +593,142 @@ Admin类别下有四个组件
 
 - 创建 src/pages/admin/New.vue
 - 创建 src/pages/admin/Products.vue
+
+
+
+## 第二章
+
+### 项目准备
+
+####  初始化项目
+使用 express-generator 脚手架来初始化我们的 Express 项目
+
+```
+npm install -g express-generator (全局安装)
+```
+打开终端，输入如下命令测试是否安装成功
+```
+express --version
+4.16.1
+```
+
+初始化我们的 Express 项目
+```
+express vue-online-shop-backend 
+```
+以下命令开启项目
+```
+cd vue-online-shop-backend && yarn
+yarn start
+```
+通过打开浏览器 `http://localhost:3000/`看到初始化效果证明安装成功
+
+
+####  脚手架代码
+通过express-generator脚手架初始化的项目代码中，主要的四个文件：
+- app.js  Express应用主文件
+- bin/www 用来开启服务的脚本
+- routes/index.js 路由主文件
+- view/index.ejs 主页的模板文件,这里只实现API数据接口
+
+`app.js`代码
+```
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+
+var index = require('./routes/index');
+var users = require('./routes/users');
+
+var app = express();
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', index);
+app.use('/users', users);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+module.exports = app;
+```
+开头是导入相关依赖，然后通过调用express()初始化express实例,设置模板引擎为ejs,以及模板引擎存放目录，然后是一系列中间件的加载使用，最后导出express实例，丢给bin/www脚本进行调用并启动服务器。
+
+**routes/index.js路由部分**
+路由是我们API服务器的核心，我们对数据进行增删改查都需要访问特定的路由接口。
+```
+var express = require('express');
+var router = express.Router();
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
+module.exports = router;
+
+```
+上面的代码中，首先导入express，然后使用其属性方法生成一个router实例，接着定义get这一http方法处理以GET方法访问我们服务器地址为/时进行处理，最后导出我们的index路由。
+
+API 服务器实际上就是通过 HTTP 的各种方法（POST、DELETE、PUT、GET 等）访问我们定义的路由，进而对数据库进行相应的增删改查操作以获取我们期望的数据。
+
+####  小结
+ - express-generator 脚手架为我们生成的上面四个文件
+- 在 Express 中，一切皆中间件（Middlewares），我们通过组合中间件来处理复制的后端逻辑。
+- 我们的 API 服务器实际上就是通过定义一系列路由，当以不同的 HTTP 方法访问这些路由接口时，对数据进行对应的增删改查操作。
+- 虽然 Express 也可以通过模板引擎展示用户界面，但是由于我们的迷你电商应用的前端已经用 Vue 来实现了，所以不需要模板引擎。
+
+
+
+### 接入MongoDB数据库（window安装在c盘目录）
+
+开启服务器
+```
+mongod(c盘目录下启动，看安装位置确定) 启动后不要关闭--- 命令行启动数据库命令
+
+另起cmd： mongo         ------命令行操作数据库指令
+浏览器打开测试 http://localhost:27017/
+输入show dbs 测试
+```
+> 问题点： 缺少数据库文件 c/data/db,   或者不是内部命令需要设置环境变量
+
+安装 Mongoose 这个 npm 包
+```
+ yarn add mongoose
+```
+Mongoose 是 MongoDB 最流行的 ODM（Object Document Mapping，对象文档映射），使用起来要比底层的 MongoDB Node 驱动更方便。
+
+
+
+### 允许资源跨域访问
+### 设计数据库的Schemas和Models
+### 完成API路由
+###
