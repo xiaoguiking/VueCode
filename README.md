@@ -28,7 +28,7 @@
     ```
  
 
- ##   Vue 和 Express 实现迷你全栈电商应用(vue-shopping)
+ ##   Vue 和 Express 实现迷你全栈电商应用(vue-shopping-online)
 
  **技术站**
 - vue
@@ -68,7 +68,8 @@ npm -v 6.9.0
 ```
  npm uninstall -g @vue/cli   卸载4.2版本
  npm install -g vue-cli     降级2.9.6版本
- vue -V 2.9.6    测试安装成功
+ vue -V 2.9.6    测试安装成功(因为github报漏洞)
+ 目前使用 @vue/cli 4.0.5
 ```
 
 #### 初始化项目
@@ -98,10 +99,33 @@ $ vue init webpack vue-shopping
 当项目初始化成功之后，接下来通过如下命令开启项目：
 
 ```
-cd vue-shopping && yarn start
+cd vue-shopping && yarn start (可以自己修改package.json命令)
 ```
 
 打开浏览器，访问 http://localhost:8080/ 查看我们初始好的项目效果。
+
+
+#### 脚手架创建的文件夹
+- **eslint **: 代码校验，校验代码的格式是否正确，规范，控制缩进
+- gitignore : git忽略
+- babel.config.js : 配置es6
+- package.json : 项目配置文件
+- **readme.md **: 对当前项目进行一个解释
+- vue.config.js : 这个是该项目的配置文件；比如配置webpack，配置跨域都在这里配置
+- **yarn.lock **: 和package.json有点类似
+- eslintrc.js : eslint配置文件
+- src : 资源文件，咱们代码都是写在这个里面的
+   - assets : 静态资源文件，一般放图片和一些css
+   - components : 组件，页面的一部分
+   - router : 配置的路由
+   - store : vuex仓库
+- **views **: 页面级组件
+- **App.vue **: 只有一个，所有的组件的入口文件
+- main.js : 是webpack打包的入口文件（可以在main.js配置一些全局的组件，filter过滤器，或指令，全局的路由钩子函数）
+- public : webpack打包之后最后要插入到这个HTML文件中
+- node_moduless : 安装的依赖模块
+**dist **: 文件夹是在yarn build 产生的，是上线之前需要把当前整个项目进行打包之后的文件
+
 
 #### 脚手架代码
 
@@ -391,7 +415,7 @@ export default {
 ```
 #### 创建后台管理页面
 
-`src/pages/Admin.vue`
+`src/views/Admin.vue`
 
 ```
 <template>
@@ -415,7 +439,7 @@ export default {
 
 #### 创建购物车页面
 
-`src/pages/Cart.vue`
+`src/views/Cart.vue`
 
 ```
 <template>
@@ -444,8 +468,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 import Home from '@/components/Home'
-import Admin from '@/pages/Admin'
-import Cart from '@/pages/Cart'
+import Admin from '@/views/Admin'
+import Cart from '@/views/Cart'
 
 Vue.use(Router)
 
@@ -484,13 +508,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from '@/components/Home'
-import Cart from '@/components/Cart'
+import Cart from '@/views/Cart'
 
 // Admin components
-import Index from '@/pages/admin/Index'
-import New from '@/pages/admin/New'
-import Edit from '@/pages/admin/Edit'
-import Products from '@/pages/admin/Products'
+import Index from '@/views/admin/Index'
+import New from '@/views/admin/New'
+import Edit from '@/views/admin/Edit'
+import Products from '@/views/admin/Products'
 
 Vue.use(Router)
 
@@ -519,7 +543,7 @@ export default New Router({
         {
           path: '',
           name: 'Products',
-          compone nt: Products
+          component: Products
         }
       ],
       {
