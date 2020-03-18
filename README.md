@@ -1,6 +1,9 @@
 *Vue Cli*
 
--  安装配置
+
+
+
+##### 安装配置
 
     ```
     default(babel, eslint)
@@ -751,8 +754,71 @@ mongod(c盘目录下启动，看安装位置确定) 启动后不要关闭--- 命
 Mongoose 是 MongoDB 最流行的 ODM（Object Document Mapping，对象文档映射），使用起来要比底层的 MongoDB Node 驱动更方便。
 
 
+`app.js`
+```
+const mongoose = require('mongoose');
 
-### 允许资源跨域访问
+// view engine setup code
+
+// 连接数据库
+mongoose.connect(`mongodb:localhost:27017/test);
+```
+### 允许资源跨域访问(CORS)
+CORS是用来限制此域名下的资源访问解决方案，当它关闭时候，另外一个域名访问此域名的下的资源会被拒绝，
+
+`app.js`
+```
+// ...
+
+// Database connection here
+mongoose.connect(`mongodb://localhost:27017/test`);
+
+// CORS config here
+app.all('/*', function(req, res, next) {
+  // CORS headers
+  res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  // Set custom headers for CORS
+  res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key');
+  if (req.method == 'OPTIONS') {
+    res.status(200).end();
+  } else {
+    next();
+  }
+});
+
+```
+
+
 ### 设计数据库的Schemas和Models
+在服务器中通过mongoose与mongoDb交互，需要定义Schema和Model，通过他们告诉mongoose需要的数据结构和和对应的数据类型是什么。
+`model/index.js`编写schema
+
+```
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const model = mongoose.model.bind(mongoose);
+const ObjectId = mongoose.Schema.Types.ObjectId;
+
+const productSchema = Schema({
+  id: ObjectId,
+  name： String,
+  image: String,
+  price: Number,
+  description: String,
+  manufacturer: { type: ObjectId, ref: 'Manufacturer'}
+})
+
+const manufacturerSchema Schema({
+  id: ObjectId,
+  name: string,
+});
+
+const Product = model('Product', productsSchema);
+const Manufacturer = model('Manufacturer', manufacturerSchema);
+
+model.exports = { Product, Manufacturer}
+```
+
 ### 完成API路由
 ###
