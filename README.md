@@ -1,7 +1,9 @@
-*Vue Cli*
+_Vue Cli_
 
+## 项目
 
-
+- vue-shopping-online 前端项目
+- vue-online-shop-backend 后端项目
 
 ##### 安装配置
 
@@ -29,25 +31,24 @@
 
     E2E Testing
     ```
- 
 
- ##   Vue 和 Express 实现迷你全栈电商应用(vue-shopping-online)
+## Vue 和 Express 实现迷你全栈电商应用(vue-shopping-online)
 
- **技术站**
+**技术栈**
+
 - vue
 - Express
--  MongoDB
-
+- MongoDB
 
 ## 项目目录
 
 - [第一章](第一章)
-    - [项目准备](###项目准备)
-        - [安装依赖](####安装依赖)
-        - [初始化项目](####初始化项目)
-    - [脚手架代码](###脚手架代码)
-        - [src/main.js](####src/main.js)
-        - [初始化项目](####初始化项目) 
+  - [项目准备](###项目准备)
+    - [安装依赖](####安装依赖)
+    - [初始化项目](####初始化项目)
+  - [脚手架代码](###脚手架代码)
+    - [src/main.js](####src/main.js)
+    - [初始化项目](####初始化项目)
 - [第二章](##第二章)
 
 ## 第一章
@@ -56,9 +57,9 @@
 
 #### 安装依赖
 
-通过安装包安装Node.js包管理工具Npm，用于创建项目和下载第三方依赖包
+通过安装包安装 Node.js 包管理工具 Npm，用于创建项目和下载第三方依赖包
 
-打开终端，输入命令测试是否安装成功： 
+打开终端，输入命令测试是否安装成功：
 
 ```
 node -v v10.15.0
@@ -66,7 +67,7 @@ npm -v 6.9.0
 
 ```
 
-安装vue-cli并且测试是否安装成功（涉及降级处理）
+安装 vue-cli 并且测试是否安装成功（涉及降级处理）
 
 ```
  npm uninstall -g @vue/cli   卸载4.2版本
@@ -80,6 +81,7 @@ npm -v 6.9.0
 ```
 vue init webpack "vue-shopping"
 ```
+
 ```
 安装过程一览
 $ vue init webpack vue-shopping
@@ -107,28 +109,27 @@ cd vue-shopping && yarn start (可以自己修改package.json命令)
 
 打开浏览器，访问 http://localhost:8080/ 查看我们初始好的项目效果。
 
-
 #### 脚手架创建的文件夹
+
 - **eslint **: 代码校验，校验代码的格式是否正确，规范，控制缩进
-- gitignore : git忽略
-- babel.config.js : 配置es6
+- gitignore : git 忽略
+- babel.config.js : 配置 es6
 - package.json : 项目配置文件
 - **readme.md **: 对当前项目进行一个解释
-- vue.config.js : 这个是该项目的配置文件；比如配置webpack，配置跨域都在这里配置
-- **yarn.lock **: 和package.json有点类似
-- eslintrc.js : eslint配置文件
+- vue.config.js : 这个是该项目的配置文件；比如配置 webpack，配置跨域都在这里配置
+- **yarn.lock **: 和 package.json 有点类似
+- eslintrc.js : eslint 配置文件
 - src : 资源文件，咱们代码都是写在这个里面的
-   - assets : 静态资源文件，一般放图片和一些css
-   - components : 组件，页面的一部分
-   - router : 配置的路由
-   - store : vuex仓库
+  - assets : 静态资源文件，一般放图片和一些 css
+  - components : 组件，页面的一部分
+  - router : 配置的路由
+  - store : vuex 仓库
 - **views **: 页面级组件
 - **App.vue **: 只有一个，所有的组件的入口文件
-- main.js : 是webpack打包的入口文件（可以在main.js配置一些全局的组件，filter过滤器，或指令，全局的路由钩子函数）
-- public : webpack打包之后最后要插入到这个HTML文件中
+- main.js : 是 webpack 打包的入口文件（可以在 main.js 配置一些全局的组件，filter 过滤器，或指令，全局的路由钩子函数）
+- public : webpack 打包之后最后要插入到这个 HTML 文件中
 - node_moduless : 安装的依赖模块
-**dist **: 文件夹是在yarn build 产生的，是上线之前需要把当前整个项目进行打包之后的文件
-
+  **dist **: 文件夹是在 yarn build 产生的，是上线之前需要把当前整个项目进行打包之后的文件
 
 #### 脚手架代码
 
@@ -138,10 +139,9 @@ cd vue-shopping && yarn start (可以自己修改package.json命令)
 - src/router/index.js
 - src/components/HelloWorld.vue
 
-
 #### src/main.js
 
-`src/main.js`是Vue应用的入口，通过导入`vue`类，`App`组件，`router`路由，加上`el`,将这些参数传给`Vue`类，生成一个Vue实例
+`src/main.js`是 Vue 应用的入口，通过导入`vue`类，`App`组件，`router`路由，加上`el`,将这些参数传给`Vue`类，生成一个 Vue 实例
 
 ```
 // The Vue build version to load with the `import` command
@@ -162,7 +162,6 @@ new Vue({
 
 ```
 
-
 #### index.html
 
 ```
@@ -181,15 +180,17 @@ new Vue({
 
 ```
 
-当我们启动项目之后，Vue所使用的webpack将会
-- 根据入口文件`src/main.js`里面声明的el属性#app，找到index.html中id为app的DOM节点
-- 把编译好的视图模板代码挂载到DOM节点下面
-- 把项目涉及到的JavaScript和css代码以及script和link方式插入到index.html中
-- 开启开发服务器，打开浏览器，进而浏览器将index.html渲染，然后看到Vue页面效果
+当我们启动项目之后，Vue 所使用的 webpack 将会
+
+- 根据入口文件`src/main.js`里面声明的 el 属性#app，找到 index.html 中 id 为 app 的 DOM 节点
+- 把编译好的视图模板代码挂载到 DOM 节点下面
+- 把项目涉及到的 JavaScript 和 css 代码以及 script 和 link 方式插入到 index.html 中
+- 开启开发服务器，打开浏览器，进而浏览器将 index.html 渲染，然后看到 Vue 页面效果
 
 #### src/App.vue
 
-src/App.vue是Vue为我们提供的组件文件，使得我们可以是使用组件形式组织代码，并通过组件的组合构建任意规模的代码
+src/App.vue 是 Vue 为我们提供的组件文件，使得我们可以是使用组件形式组织代码，并通过组件的组合构建任意规模的代码
+
 ```
 <template>
   <div id="app">
@@ -216,7 +217,9 @@ export default {
 </style>
 
 ```
-App组件包括了三个部分的代码
+
+App 组件包括了三个部分的代码
+
 - template (html)
 - script (js)
 - style (css)
@@ -233,9 +236,10 @@ App组件包括了三个部分的代码
 
 ```
 
-
 #### src/router/index.js
-Vue提供的路由文件
+
+Vue 提供的路由文件
+
 ```
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -254,9 +258,10 @@ export default new Router({
 })
 
 ```
-导出Vue类、Router类，已经HelloWorld组件
-使用 Vue.use(Router) 告诉 Vue，我们应用接入了路由，在导出的路由实例中，通过routes数组定义了项目所有的页面，每个页面是类似{path， name, component}的对象，比如初始化生成的HelloWorld.vue是网站的首页(浏览器打开的第一个页面),
-因为它的路径(path)定义为`/`,此外一个页面定义还需要name，代表此页面在vue-router中的标识符，component则代表此页面渲染时的所用到组件
+
+导出 Vue 类、Router 类，已经 HelloWorld 组件
+使用 Vue.use(Router) 告诉 Vue，我们应用接入了路由，在导出的路由实例中，通过 routes 数组定义了项目所有的页面，每个页面是类似{path， name, component}的对象，比如初始化生成的 HelloWorld.vue 是网站的首页(浏览器打开的第一个页面),
+因为它的路径(path)定义为`/`,此外一个页面定义还需要 name，代表此页面在 vue-router 中的标识符，component 则代表此页面渲染时的所用到组件
 
 ```
 import HelloWorld from '@/components/HelloWorld'
@@ -266,7 +271,9 @@ import HelloWorld from '@/components/HelloWorld'
 ```
 
 #### src/components/HelloWorld.vue
+
 脚手架提供的一个实例组件
+
 ```
 <template>
   <div class="hello">
@@ -306,18 +313,21 @@ a {
 </style>
 
 ```
-当我们打开浏览器地址为：`http://localhost:8080/`,此时路径为/,激活HelloWorld.vue组件，整个项目渲染App.vue内容
+
+当我们打开浏览器地址为：`http://localhost:8080/`,此时路径为/,激活 HelloWorld.vue 组件，整个项目渲染 App.vue 内容
 显示的解构为
-- 一张Vue logo 图
-- HelloWorld.vue组件内容
 
+- 一张 Vue logo 图
+- HelloWorld.vue 组件内容
 
-### 编写第一个Vue页面
+### 编写第一个 Vue 页面
 
 编写电商应用首页
 
 #### 编写页面组件
-在src/components下创建Home.vue文件，编写代码
+
+在 src/components 下创建 Home.vue 文件，编写代码
+
 ```
 //html
 <template>
@@ -342,11 +352,13 @@ export default {
 <style scoped>
 </style>
 ```
-- 后续使用Element UI组件库
-- 在script中引入的data，在template引入了插值语法{{var}},其中data是声明此组件的初始化数据，而{{var}}，插值语法是方便将数据渲染到视图模板中，这里将script中定义的data的msg插值到视图模板中，最终会渲染一个h1标签，标签内容为msg的内容
+
+- 后续使用 Element UI 组件库
+- 在 script 中引入的 data，在 template 引入了插值语法{{var}},其中 data 是声明此组件的初始化数据，而{{var}}，插值语法是方便将数据渲染到视图模板中，这里将 script 中定义的 data 的 msg 插值到视图模板中，最终会渲染一个 h1 标签，标签内容为 msg 的内容
 
 **插入路由**
-src/router/index.js路由中将主页路由/所绑定的组件从默认的HelloWorld修改为刚才写的Home组件
+src/router/index.js 路由中将主页路由/所绑定的组件从默认的 HelloWorld 修改为刚才写的 Home 组件
+
 ```
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -371,12 +383,13 @@ export default new Router({
 
 - 商品展示列表 Home.vue
 - 商品详情 Detail.vue
-- 购物车  Cart.vue
+- 购物车 Cart.vue
 - 商品的后台管理页面 Admin.vue
 
 现在我们先来实现商品展示列表、购物车和后台管理页面的模板内容。因为商品详情页后面将会使用组件进行复用，所以这里我们暂时先不创建。
 
 #### 添加首页导航
+
 ```
 // 修改App.vue
 <template>
@@ -416,6 +429,7 @@ export default {
 }
 </style>
 ```
+
 #### 创建后台管理页面
 
 `src/views/Admin.vue`
@@ -500,7 +514,6 @@ export default new Router({
 
 ### 使用嵌套路由和动态路由合理组织页面
 
-
 #### 升级路由
 
 - /create 创建新的商品
@@ -559,20 +572,22 @@ export default New Router({
 })
 
 ```
+
 嵌套路由的用法是给需要归为一类的页面设置一个入口页面，然后把这一类页面都放到这个路由页面定义的`children`字段数组中。
 
-Admin类别下有四个组件
+Admin 类别下有四个组件
+
 - 入口组件 Index， /admin
 - 新建 New, /admin/new
 - Products,
-- 编辑 Edit， /admin/edit/:id  (动态路由)
+- 编辑 Edit， /admin/edit/:id (动态路由)
 
-`edit:id` ----`动态路由`，即:id会匹配任意字符串，用户访问`/admin/edit/<any-string>`都会激活Edit路由，从而渲染
+`edit:id` ----`动态路由`，即:id 会匹配任意字符串，用户访问`/admin/edit/<any-string>`都会激活 Edit 路由，从而渲染
 
-
-#### 创建Admin子页面
+#### 创建 Admin 子页面
 
 - `src/pages/admin/Index.vue`
+
   ```
   <template>
     <div>
@@ -595,12 +610,13 @@ Admin类别下有四个组件
   </template>
   ```
 
-  Index.vue作为嵌套路由的入口文件，在其中会有`router-link`
+  Index.vue 作为嵌套路由的入口文件，在其中会有`router-link`
   导向更深层次的路由
 
-  `router-view`用渲染子路由组件，比如访问/admin/new 页面，，那么router-view部分会被替换成New.vue内容
+  `router-view`用渲染子路由组件，比如访问/admin/new 页面，，那么 router-view 部分会被替换成 New.vue 内容
 
 - 创建 src/pages/admin/Edit.vue
+
   ```
   <template>
     <div>
@@ -610,8 +626,10 @@ Admin类别下有四个组件
     </div>
   </template>
   ```
-  用户访问/admin/edit/:id,渲染Edit.vue组件
-  通过$route.params.id方式获取到用户输入的：id部分
+
+  用户访问/admin/edit/:id,渲染 Edit.vue 组件
+  通过$route.params.id 方式获取到用户输入的：id 部分
+
   ```
   /admin/edit/123
 
@@ -621,44 +639,51 @@ Admin类别下有四个组件
 - 创建 src/pages/admin/New.vue
 - 创建 src/pages/admin/Products.vue
 
-
-
 ## 第二章
 
 ### 项目准备
 
-####  初始化项目
+#### 初始化项目
+
 使用 express-generator 脚手架来初始化我们的 Express 项目
 
 ```
 npm install -g express-generator (全局安装)
 ```
+
 打开终端，输入如下命令测试是否安装成功
+
 ```
 express --version
 4.16.1
 ```
 
 初始化我们的 Express 项目
+
 ```
-express vue-online-shop-backend 
+express vue-online-shop-backend
 ```
+
 以下命令开启项目
+
 ```
 cd vue-online-shop-backend && yarn
 yarn start
 ```
+
 通过打开浏览器 `http://localhost:3000/`看到初始化效果证明安装成功
 
+#### 脚手架代码
 
-####  脚手架代码
-通过express-generator脚手架初始化的项目代码中，主要的四个文件：
-- app.js  Express应用主文件
+通过 express-generator 脚手架初始化的项目代码中，主要的四个文件：
+
+- app.js Express 应用主文件
 - bin/www 用来开启服务的脚本
 - routes/index.js 路由主文件
-- view/index.ejs 主页的模板文件,这里只实现API数据接口
+- view/index.ejs 主页的模板文件,这里只实现 API 数据接口
 
 `app.js`代码
+
 ```
 var express = require('express');
 var path = require('path');
@@ -707,10 +732,12 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 ```
-开头是导入相关依赖，然后通过调用express()初始化express实例,设置模板引擎为ejs,以及模板引擎存放目录，然后是一系列中间件的加载使用，最后导出express实例，丢给bin/www脚本进行调用并启动服务器。
 
-**routes/index.js路由部分**
-路由是我们API服务器的核心，我们对数据进行增删改查都需要访问特定的路由接口。
+开头是导入相关依赖，然后通过调用 express()初始化 express 实例,设置模板引擎为 ejs,以及模板引擎存放目录，然后是一系列中间件的加载使用，最后导出 express 实例，丢给 bin/www 脚本进行调用并启动服务器。
+
+**routes/index.js 路由部分**
+路由是我们 API 服务器的核心，我们对数据进行增删改查都需要访问特定的路由接口。
+
 ```
 var express = require('express');
 var router = express.Router();
@@ -723,38 +750,48 @@ router.get('/', function(req, res, next) {
 module.exports = router;
 
 ```
-上面的代码中，首先导入express，然后使用其属性方法生成一个router实例，接着定义get这一http方法处理以GET方法访问我们服务器地址为/时进行处理，最后导出我们的index路由。
+
+上面的代码中，首先导入 express，然后使用其属性方法生成一个 router 实例，接着定义 get 这一 http 方法处理以 GET 方法访问我们服务器地址为/时进行处理，最后导出我们的 index 路由。
 
 API 服务器实际上就是通过 HTTP 的各种方法（POST、DELETE、PUT、GET 等）访问我们定义的路由，进而对数据库进行相应的增删改查操作以获取我们期望的数据。
 
-####  小结
- - express-generator 脚手架为我们生成的上面四个文件
+#### 小结
+
+- express-generator 脚手架为我们生成的上面四个文件
 - 在 Express 中，一切皆中间件（Middlewares），我们通过组合中间件来处理复制的后端逻辑。
 - 我们的 API 服务器实际上就是通过定义一系列路由，当以不同的 HTTP 方法访问这些路由接口时，对数据进行对应的增删改查操作。
 - 虽然 Express 也可以通过模板引擎展示用户界面，但是由于我们的迷你电商应用的前端已经用 Vue 来实现了，所以不需要模板引擎。
 
-
-
-### 接入MongoDB数据库（window安装在c盘目录）
+### 接入 MongoDB 数据库（window 安装在 c 盘目录）
 
 开启服务器
+
 ```
 mongod(c盘目录下启动，看安装位置确定) 启动后不要关闭--- 命令行启动数据库命令
 
 另起cmd： mongo         ------命令行操作数据库指令
 浏览器打开测试 http://localhost:27017/
 输入show dbs 测试
+
+mac下启动(个人配置）
+/usr/local/opt/mongodb/bin 
+sudo ./mongod
+
+
 ```
-> 问题点： 缺少数据库文件 c/data/db,   或者不是内部命令需要设置环境变量
+
+> 问题点： 缺少数据库文件 c/data/db, 或者不是内部命令需要设置环境变量
 
 安装 Mongoose 这个 npm 包
+
 ```
  yarn add mongoose
 ```
+
 Mongoose 是 MongoDB 最流行的 ODM（Object Document Mapping，对象文档映射），使用起来要比底层的 MongoDB Node 驱动更方便。
 
-
 `app.js`
+
 ```
 const mongoose = require('mongoose');
 
@@ -763,10 +800,13 @@ const mongoose = require('mongoose');
 // 连接数据库
 mongoose.connect(`mongodb:localhost:27017/test);
 ```
+
 ### 允许资源跨域访问(CORS)
-CORS是用来限制此域名下的资源访问解决方案，当它关闭时候，另外一个域名访问此域名的下的资源会被拒绝，
+
+CORS 是用来限制此域名下的资源访问解决方案，当它关闭时候，另外一个域名访问此域名的下的资源会被拒绝，
 
 `app.js`
+
 ```
 // ...
 
@@ -789,10 +829,10 @@ app.all('/*', function(req, res, next) {
 
 ```
 
+### 设计数据库的 Schemas 和 Models
 
-### 设计数据库的Schemas和Models
-在服务器中通过mongoose与mongoDb交互，需要定义Schema和Model，通过他们告诉mongoose需要的数据结构和和对应的数据类型是什么。
-`model/index.js`编写schema
+在服务器中通过 mongoose 与 mongoDb 交互，需要定义 Schema 和 Model，通过他们告诉 mongoose 需要的数据结构和和对应的数据类型是什么。
+`model/index.js`编写 schema
 
 ```
 const mongoose = require('mongoose');
@@ -820,5 +860,22 @@ const Manufacturer = model('Manufacturer', manufacturerSchema);
 model.exports = { Product, Manufacturer}
 ```
 
-### 完成API路由
+### 完成 API 路由
+
+这里操作 manufacturer 的前五个路由的功能如下：
+
+GET /manufacturers 获取所以的制造商（manufacturers）
+GET /manufacturers/:id 获取单个制造商，这里 :id 代表动态路由，用于匹配任意字符串：/manufacturers/<any-string>。
+POST /manufacturers 用户创建单个制造商
+PUT /manufacturers/:id 用于修改单个制造商
+DELETE /manufacturers/:id 用于删除单个制造商
+
+对应的 product 的五个路由功能如下：
+
+GET /products 获取所以的产商品（products）
+GET /products/:id 获取单个商品，这里 :id 代表动态路由，用于匹配任意字符串：/products/<any-string>。
+POST /products 用户创建单个商品
+PUT /products/:id 用于修改单个商品
+DELETE /products/:id 用于删除单个商品
+
 ###

@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const api = require('./routes/api/api');
 
 var app = express();
 // 导入mongoose
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api/v1', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,6 +45,7 @@ app.use(function(err, req, res, next) {
 });
 // ...
 
+// 允许资源跨域访问
 // Database connection here
 mongoose.connect(`mongodb://localhost:27017/test`);
 
