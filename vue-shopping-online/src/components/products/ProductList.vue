@@ -8,7 +8,7 @@
       </div>
       <template v-for="product in products">
         <div :key="product._id" class="product">
-          <p class="product__name">产品名称：{{ product.name }}</p>
+          <p class="product__name">产品名称 {{product.name}}</p>
           <p class="product__description">介绍：{{ product.description }}</p>
           <p class="product__price">价格：{{ product.price }}</p>
           <p class="product.manufacturer">
@@ -25,6 +25,12 @@
 <script>
 export default {
   name: 'product-list',
+  created () {
+    if (this.products.length === 0) {
+      console.log(1)
+      this.$store.dispatch('allProducts')
+    }
+  },
   computed: {
     products () {
       // a computed getter

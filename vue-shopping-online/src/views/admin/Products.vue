@@ -3,9 +3,9 @@
     <div class="title">
         <h1>{{msg}}</h1>
     </div>
-    <div class="body">
+    <!-- <div class="body">
       {{product.name}}
-    </div>
+    </div> -->
     <product-list />
 </div>
 </template>

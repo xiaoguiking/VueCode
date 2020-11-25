@@ -6,13 +6,13 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const api = require('./routes/api/api');
+const api = require('./routes/api/api.js');
 
 var app = express();
 // 导入mongoose
 const mongoose = require('mongoose');
 // 连接数据库
-mongoose.connect(`mongodb://localhost:27017/test`); 
+mongoose.connect(`mongodb://localhost:27017/test`, { useUnifiedTopology: true, useNewUrlParser: true }); 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api/v1', api);
+app.use('/api/v1/', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

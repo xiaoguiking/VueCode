@@ -6,6 +6,7 @@ const { Product } = Model;
 
 const productController = {
   all(req, res) {
+    console.log(1111)
     Product.find({})
       .populate('manufacturer')
       .exec((err, products) => res.json(products))
