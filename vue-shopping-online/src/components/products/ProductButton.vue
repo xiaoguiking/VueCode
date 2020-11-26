@@ -16,12 +16,16 @@ export default {
     isAdding() {
       let isAdding = true;
       this.cart.map(product => {
-        if (product._id === this.product._id) isAdding = false;
+        if (product._id === this.product._id) {
+          isAdding = false;
+        }
       });
+
       return isAdding;
     },
     cart() {
-      this.$store.state.cart;
+      // 注意需要返回数据
+      return this.$store.state.cart;
     }
   },
   methods: {
@@ -30,7 +34,7 @@ export default {
         product: this.product
       });
     },
-    removeFromCart() {
+    removeFromCart(productId) {
       this.$store.commit("REMOVE_FROM_CART", {
         productId
       });
@@ -39,4 +43,11 @@ export default {
 };
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.button {
+  width: 130px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+</style>
