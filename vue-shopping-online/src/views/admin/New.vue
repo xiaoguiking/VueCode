@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import ProductForm from '../../components/products/ProductForm'
+import ProductForm from '@/components/products/ProductForm'
 export default {
   components: {
     'product-form': ProductForm
@@ -21,7 +21,7 @@ export default {
   new: 'Admin',
   data () {
     return {
-      msg: 'welcome to your Admin/New',
+      msg: 'welcome to your Admin New Page',
       model: {},
       manufacturers: [
         {

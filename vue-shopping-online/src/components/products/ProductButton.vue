@@ -11,36 +11,36 @@
 
 <script>
 export default {
-  props: ["product"],
+  props: ['product'],
   computed: {
-    isAdding() {
-      let isAdding = true;
+    isAdding () {
+      let isAdding = true
       this.cart.map(product => {
         if (product._id === this.product._id) {
-          isAdding = false;
+          isAdding = false
         }
-      });
+      })
 
-      return isAdding;
+      return isAdding
     },
-    cart() {
+    cart () {
       // 注意需要返回数据
-      return this.$store.state.cart;
+      return this.$store.state.cart
     }
   },
   methods: {
-    addToCart() {
-      this.$store.commit("ADD_TO_CART", {
+    addToCart () {
+      this.$store.commit('ADD_TO_CART', {
         product: this.product
-      });
+      })
     },
-    removeFromCart(productId) {
-      this.$store.commit("REMOVE_FROM_CART", {
+    removeFromCart (productId) {
+      this.$store.commit('REMOVE_FROM_CART', {
         productId
-      });
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

@@ -12,14 +12,14 @@
 </template>
 
 <script>
-import ProductButton from "./ProductButton.vue";
+import ProductButton from './ProductButton.vue'
 export default {
-  name: "product-item",
-  props: ["product"],
+  name: 'product-item',
+  props: ['product'],
   components: {
-    "product-button": ProductButton
+    'product-button': ProductButton
   }
-};
+}
 </script>
 <style lang="less" scoped>
 .product {

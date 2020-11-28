@@ -10,7 +10,7 @@ export default {
   name: 'Home',
   data () {
     return {
-      msg: 'Welcome to Home.vue'
+      msg: 'Welcome to Home Page'
     }
   }
 }

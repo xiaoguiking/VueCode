@@ -17,7 +17,7 @@ export default {
   new: 'Admin',
   data () {
     return {
-      msg: 'This is Admin'
+      msg: 'welcome to your Admin Products Page'
     }
   },
   // 计算属性

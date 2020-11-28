@@ -3,7 +3,7 @@
     <form @submit.prevent="saveProduct">
       <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
         <div class="form-group">
-          <label for="">Name</label>
+          <label for="">Name: </label>
           <input
             type="text"
             placeholder="Name"
@@ -13,7 +13,7 @@
           />
         </div>
         <div class="form-group">
-          <label for="">Price</label>
+          <label for="">Price: </label>
           <input
             type="number"
             placeholder="Price"
@@ -23,7 +23,7 @@
           />
         </div>
         <div class="form-group">
-          <label>Manufacturer</label>
+          <label>Manufacturer: </label>
           <select
             type="text"
             name="manufacturer"
@@ -46,7 +46,7 @@
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
         <div class="form-group">
-          <label for="">Image</label>
+          <label for="">Image: </label>
           <input
             type="text"
             name="Image"
@@ -56,7 +56,7 @@
           />
         </div>
         <div class="form-group">
-          <label for="">Description</label>
+          <label for="">Description: </label>
           <textarea
             name="description"
             rows="5"
@@ -88,4 +88,29 @@ export default {
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.productInfo {
+  width: 50vw;
+  height: 100%;
+  margin: 0 auto;
+  border: 1px solid rgb(255, 196, 0);
+  border-radius: 5px;
+
+  .form-group {
+    width: 600px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+
+    label {
+      width: 100px;
+      height: 20px;
+    }
+    input, select, textarea {
+      width: 170px;
+      height: 20px;
+    }
+  }
+}
+
+</style>
