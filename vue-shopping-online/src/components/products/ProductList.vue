@@ -22,15 +22,15 @@ export default {
   },
   created () {
     if (this.products.length === 0) {
-      console.log(1)
       this.$store.dispatch('allProducts')
     }
   },
   computed: {
     products () {
       // a computed getter
-      console.log(this.$store.state.products)
-      return this.$store.state.products
+      console.log(this.$store.state.allProducts, 'allProducts')
+      // return this.$store.state.products
+      return this.$store.getters.allProducts
     }
   },
   methods: {

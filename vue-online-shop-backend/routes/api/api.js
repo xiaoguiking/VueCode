@@ -10,6 +10,7 @@ router.put('/manufacturers/:id', manufacturerController.update);
 router.delete('/manufacturers/:id', manufacturerController.remove);
 
 router.get('/products', productController.all);
+// 测试
 router.get('/products/:id', productController.byId);
 router.post('/products', productController.create);
 router.put('/products/:id', productController.update);

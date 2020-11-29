@@ -35,6 +35,7 @@ import Cart from '@/views/Cart'
 import Index from '@/views/admin/Index'
 import Edit from '@/views/admin/Edit'
 import New from '@/views/admin/New'
+import Details from '@/views/Detail'
 import Products from '@/views/admin/Products'
 
 Vue.use(Router)
@@ -50,6 +51,11 @@ export default new Router({
       path: '/cart',
       name: 'Cart',
       component: Cart
+    },
+    {
+      path: '/detail/:id',
+      name: 'Detail',
+      component: Details
     },
     {
       path: '/admin',

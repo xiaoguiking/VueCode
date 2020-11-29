@@ -23,7 +23,8 @@ export default {
   // 计算属性
   computed: {
     product () {
-      return this.$store.state.products[0]
+      // return this.$store.state.products[0]
+      return this.$store.getters.allProduct[0]
     }
   }
 }

@@ -1,19 +1,15 @@
-/**
- * product Controller
- */
 const Model = require('../model');
 const { Product } = Model;
 
 const productController = {
   all(req, res) {
-    console.log(1111)
     Product.find({})
       .populate('manufacturer')
       .exec((err, products) => res.json(products))
   },
   byId(req, res) {
     const idParams = req.params.id;
-
+    console.log(idParams, 'idParams')
     Product
       .findOne({ _id: idParams })
       .populate('manufacturer')

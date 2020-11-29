@@ -11,7 +11,6 @@
 
 <script>
 import ProductItem from '../components/products/ProductItem.vue'
-import ProductList from '../components/products/ProductList.vue'
 export default {
   new: 'Admin',
   components: {
