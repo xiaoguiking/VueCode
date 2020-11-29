@@ -41,13 +41,13 @@ axios:
 
 ## (五--1) 使用 Vuex Getters 复用本地数据获取逻辑
 
-``` text
+```text
 Vuex允许我们在 store 中定义“getter”（可以认为是 store的计算属性）。就像计算属性一样，getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算。
 ```
 
 - 属性访问`this.$store.getter.allProducts`
 
-  ``` --js
+  ```--js
   allProducts(state) {
     return state.products;
   }
@@ -56,9 +56,19 @@ Vuex允许我们在 store 中定义“getter”（可以认为是 store的计算
 
 - 方法访问 `this.$store.getter.productById(id)`
 
-  ``` --js
+  ```--js
    productById: (state, getters) => id => {
      return state.product
    }
    // state 表示本地数据源
   ```
+
+## (六)
+
+### (1 抽出 Getters 和 Mutations 逻辑)
+
+### (2 抽出 Actions 逻辑)
+
+### (3 干掉 mutation-types 硬编码
+
+)
