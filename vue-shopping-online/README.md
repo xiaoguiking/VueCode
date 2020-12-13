@@ -69,6 +69,8 @@ Vuex允许我们在 store 中定义“getter”（可以认为是 store的计算
 
 ### (2 抽出 Actions 逻辑)
 
+- 封装展示商品信息的表单组件 ProductForm
+
 ### (3 干掉 mutation-types 硬编码
 
 )

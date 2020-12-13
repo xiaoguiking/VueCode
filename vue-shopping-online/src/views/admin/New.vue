@@ -13,35 +13,52 @@
 </template>
 
 <script>
-import ProductForm from '@/components/products/ProductForm'
+import ProductForm from "@/components/products/ProductForm";
 export default {
   components: {
-    'product-form': ProductForm
+    "product-form": ProductForm
   },
-  new: 'Admin',
-  data () {
+  new: "Admin",
+  data() {
     return {
-      msg: 'welcome to your Admin New Page',
+      msg: "welcome to your Admin New Page",
       model: {},
       manufacturers: [
         {
-          _id: 'sam',
-          name: 'Samsung'
+          _id: "sam",
+          name: "Samsung"
         },
         {
-          _id: 'apple',
-          name: 'Apple'
+          _id: "apple",
+          name: "Apple"
         }
       ]
+    };
+  },
+  created() {
+    if (this.manufacturers.length === 0) {
+      this.$store.dispatch("allManufacturers");
+    }
+  },
+  computed: {
+    manufacturers() {
+      return this.$store.getters.manufacturers;
+    },
+    model() {
+      return {};
     }
   },
   methods: {
-    addProduct (model) {
-      console.log('model', model)
+    // addProduct(model) {
+    //   console.log("model", model);
+    // }
+    addProduct(model) {
+      this.$store.dispatch('addProduct', {
+        product: model
+      })
     }
   }
-
-}
+};
 </script>
 
 <style scoped></style>

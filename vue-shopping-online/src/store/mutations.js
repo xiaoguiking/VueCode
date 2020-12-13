@@ -1,4 +1,3 @@
-import { Radio } from "antd";
 /**
  * mutations
  */
@@ -29,6 +28,27 @@ export const productMutations = {
     state.products = state.products.filter(
       product => product._id !== productId
     );
+  },
+  UPDATE_PRODUCT(state) {
+    state.showLoader = true;
+  },
+  UPDATE_PRODUCT_SUCCESS(state, payload) {
+    state.showLoader = false;
+    const { product: newProduct } = payload;
+    state.products = newProduct;
+    state.products = state.products.map(product => {
+      if (product._id === product.id) {
+        return newProduct;
+      }
+      return product;
+    });
+  },
+  ALL_PRODUCT(state) {
+    state.showLoader = true;
+  },
+  ALL_PRODUCT_SUCCESS (state, payload) {
+    const {product} = payload;
+    state.products = state.products.concat(product); 
   }
 };
 
