@@ -21,41 +21,38 @@ export default {
   new: "Admin",
   data() {
     return {
-      msg: "welcome to your Admin New Page",
-      model: {},
-      manufacturers: [
-        {
-          _id: "sam",
-          name: "Samsung"
-        },
-        {
-          _id: "apple",
-          name: "Apple"
-        }
-      ]
+      msg: "welcome to your Admin New Page"
+      // model: {}
+      // manufacturers: [
+      //   {
+      //     _id: "sam",
+      //     name: "Samsung"
+      //   },
+      //   {
+      //     _id: "apple",
+      //     name: "Apple"
+      //   }
+      // ]
     };
   },
   created() {
-    if (this.manufacturers.length === 0) {
-      this.$store.dispatch("allManufacturers");
-    }
+    // if (this.manufacturers.length === 0) {
+    this.$store.dispatch("allManufacturers");
+    // }
   },
   computed: {
     manufacturers() {
-      return this.$store.getters.manufacturers;
+      return this.$store.getters.allManufacturers;
     },
     model() {
       return {};
     }
   },
   methods: {
-    // addProduct(model) {
-    //   console.log("model", model);
-    // }
     addProduct(model) {
-      this.$store.dispatch('addProduct', {
+      this.$store.dispatch("addProduct", {
         product: model
-      })
+      });
     }
   }
 };

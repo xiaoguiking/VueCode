@@ -13,12 +13,14 @@
             <th></th>
             <th></th>
           </tr>
-      </thead>
+        </thead>
         <tbody>
           <tr v-for="product in products" :key="product._id">
             <td>{{ product.name }}</td>
             <td>{{ product.price }}</td>
-            <td>{{ product.manufacturer.name }}</td>
+            <td>
+              {{ product.manufacturer ? product.manufacturer.name : "oppo" }}
+            </td>
             <td class="modify">
               <router-link :to="'/admin/edit/' + product._id">修改</router-link>
             </td>
@@ -36,7 +38,7 @@
 // import ProductList from '../../components/products/ProductList.vue'
 export default {
   // components: { ProductList },
-  
+
   new: "Admin",
   data() {
     return {
@@ -44,7 +46,6 @@ export default {
     };
   },
   created() {
-    console.log(this.products.length, 'this.products.length ');
     if (this.products.length === 0) {
       this.$store.dispatch("allProducts");
     }
@@ -59,11 +60,13 @@ export default {
       }
     }
   },
-  // 计算属性
   computed: {
-    product() {
-      // return this.$store.state.products[0]
-      return this.$store.getters.allProduct[0];
+    products() {
+      console.log(
+        this.$store.getters.allProducts,
+        "------------allProducts----------"
+      );
+      return this.$store.getters.allProducts;
     }
   }
 };

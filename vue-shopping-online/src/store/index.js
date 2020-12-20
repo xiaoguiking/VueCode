@@ -26,7 +26,9 @@ export default new Vuex.Store({
     // all products
     products: [],
     // all manufacturers
-    manufacturers: []
+    manufacturers: [],
+    // selected manufacturer
+    manufacturer: {}
   },
   getters: {
     ...productGetters,

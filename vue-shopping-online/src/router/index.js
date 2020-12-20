@@ -1,30 +1,3 @@
-// import Vue from 'vue'
-// import VueRouter from 'vue-router'
-// import Home from '../views/Home.vue'
-
-// Vue.use(VueRouter)
-
-// const routes = [
-//   {
-//     path: '/',
-//     name: 'Home',
-//     component: Home
-//   },
-//   {
-//     path: '/about',
-//     name: 'About',
-//     // route level code-splitting
-//     // this generates a separate chunk (about.[hash].js) for this route
-//     // which is lazy-loaded when the route is visited.
-//     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-//   }
-// ]
-
-// const router = new VueRouter({
-//   routes
-// })
-
-// export default router
 import Vue from "vue";
 import Router from "vue-router";
 // import HelloWorld from '@/components/HelloWorld'
@@ -38,6 +11,8 @@ import New from "@/views/admin/New";
 import Details from "@/views/Detail";
 import Products from "@/views/admin/Products";
 import Manufacturers from "@/views/admin/Manufacturers.vue";
+import NewManufacturers from "@/views/admin/NewManufacturers.vue";
+import EditManufacturers from "@/views/admin/EditManufacturers";
 
 Vue.use(Router);
 
@@ -82,6 +57,16 @@ export default new Router({
           path: "manufacturers",
           name: "Manufacturers",
           component: Manufacturers
+        },
+        {
+          path: "manufacturers/new",
+          name: "NewManufacturers",
+          component: NewManufacturers
+        },
+        {
+          path: "manufacturers/edit/:id",
+          name: "EditManufacturers",
+          component: EditManufacturers
         }
       ]
     }

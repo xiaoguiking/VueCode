@@ -38,7 +38,9 @@
                     (model.manufacturer && model.manufacturer._id)
                 "
                 :key="manufacturer._id"
-                >{{ manufacturer.name }}</option
+                >{{
+                  manufacturer.name ? manufacturer.name : "manufacturerName"
+                }}</option
               >
             </template>
           </select>
@@ -78,14 +80,13 @@
 
 <script>
 export default {
-  props: ['model', 'manufacturers', 'isEditing'],
+  props: ["model", "manufacturers", "isEditing"],
   methods: {
-    saveProduct () {
-      this.$emit('save-product', this.model)
-      console.log('save')
+    saveProduct() {
+      this.$emit("save-product", this.model);
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
@@ -106,11 +107,12 @@ export default {
       width: 100px;
       height: 20px;
     }
-    input, select, textarea {
+    input,
+    select,
+    textarea {
       width: 170px;
       height: 20px;
     }
   }
 }
-
 </style>

@@ -28,12 +28,12 @@
 <script>
 export default {
   created() {
-    if (this.$store.allManufacturers === 0) {
+    if (this.$store.manufacturers === 0) {
       this.$store.dispatch("allManufacturers");
     }
   },
   computed: {
-    allManufacturers() {
+    manufacturers() {
       return this.$store.getters.allManufacturers;
     }
   },

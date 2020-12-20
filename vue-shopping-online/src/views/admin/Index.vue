@@ -11,10 +11,14 @@
               <router-link to="/admin/new">New Products 添加商品</router-link>
             </li>
             <li>
-              <router-link to="/admin/manufacturers">show manufacturers 查看生产商</router-link>
+              <router-link to="/admin/manufacturers"
+                >show manufacturers 查看生产商</router-link
+              >
             </li>
             <li>
-              <router-link to="/admin/manufacturers/create">New Products 添加制造商</router-link>
+              <router-link to="/admin/manufacturers/new"
+                >New Products 添加制造商</router-link
+              >
             </li>
           </ul>
         </div>
