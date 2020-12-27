@@ -4,21 +4,21 @@
   <div>
     <div class="products">
       <div class="container">
-        This is productList
+        This is productList Page
       </div>
-      <template v-for="product in products">
-        <product-item :product="product" :key="product._id"></product-item>
-      </template>
+      <!-- <template v-for="product in products"> -->
+      <product-item :products="products"></product-item>
+      <!-- </template> -->
     </div>
   </div>
 </template>
 
 <script>
-import ProductItemVue from "./ProductItem.vue";
+import ProductItem from "./ProductItem.vue";
 export default {
   name: "product-list",
   components: {
-    "product-item": ProductItemVue
+    "product-item": ProductItem
   },
   created() {
     if (this.products.length === 0) {
@@ -27,15 +27,12 @@ export default {
   },
   computed: {
     products() {
-      // a computed getter
-      console.log(this.$store.state.allProducts, "allProducts");
-      // return this.$store.state.products
       return this.$store.getters.allProducts;
     }
   },
   methods: {
     addToCart(product) {
-      console.log(product, "----addToCart----------------->");
+      console.log(product);
       // 传输参数是对象
       this.$store.commit("ADD_TO_CART", { product });
     }
@@ -44,6 +41,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.container {
+  margin: 10px auto;
+  text-align: center;
+}
 .product {
   border-bottom: 1px solid black;
 }

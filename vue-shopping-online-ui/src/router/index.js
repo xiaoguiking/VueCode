@@ -3,8 +3,7 @@ import Router from "vue-router";
 // import HelloWorld from '@/components/HelloWorld'
 // admin components
 // import Admin from '@/pages/Admin'
-// import Home from "@/components/Home";
-import Home from "@/views/Home";
+import Home from "@/views/Home.vue";
 import Cart from "@/views/Cart";
 import Index from "@/views/admin/Index";
 import Edit from "@/views/admin/Edit";

@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="cart">
     <div class="title">
       <h1>{{ msg }}</h1>
     </div>
-    <template v-for="product in cart">
-      <product-item :product="product" :key="product._id"></product-item>
-    </template>
+    <!-- <template v-for="product in cart"> -->
+    <product-item :products="cart"></product-item>
+    <!-- </template> -->
   </div>
 </template>
 
@@ -35,11 +35,12 @@ export default {
 };
 </script>
 
-<style scoped>
-.product {
-  border-bottom: 1px solid black;
+<style lang="less" scoped>
+.cart {
+  .title {
+    text-align: center;
+  }
 }
-
 .product__image {
   width: 100px;
   height: 100px;
